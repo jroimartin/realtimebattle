@@ -33,7 +33,8 @@
 #include "../exceptions/confignotloadedexception.h"
 #include <sstream>
 #include <errno.h>
-
+#include <cstring>
+#include <unistd.h>
 /**
  * Namespace
  */

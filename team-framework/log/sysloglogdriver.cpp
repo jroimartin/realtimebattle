@@ -198,7 +198,7 @@ namespace Log {
 			}
 		}
 	
-		syslog(_syslogPriority, message.c_str());
+		syslog(_syslogPriority, "%s", message.c_str());
 	}
 
 	map<string, string> SyslogLogDriver::parseParameterString(const string& parameters) throw	

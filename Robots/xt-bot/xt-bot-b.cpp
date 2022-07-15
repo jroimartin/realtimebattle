@@ -31,6 +31,7 @@ General Public License for more details.
 #include <signal.h>
 #include <unistd.h>
 #include <Messagetypes.h>
+#include <cstring>
 
 using std::cout;
 using std::cin;
@@ -67,9 +68,9 @@ class bot
    bot(){ fahr_winkel = 0.0; }
    void init();
    void options();
-   void nachricht(); 
-   void debug(char *);
-   void print(char *);
+   void nachricht();
+   void debug(const char *);
+   void print(const char *);
    void beschleunigen(double);
    void rotateamount(int, double, double);
    void sweep(int,double,double,double);
@@ -89,7 +90,7 @@ void bot::beschleunigen(double i)
   cout<<"Accelerate "<<i<<endl;
  }
 
-void bot::print(char *a)
+void bot::print(const char *a)
  {
   cout<<"Print "<<a<<endl;
  } 
@@ -106,7 +107,7 @@ void bot::init()
   cout<<"Name xt2-bot B"<<endl;
  }
 
-void bot::debug(char *str)
+void bot::debug(const char *str)
  {
   cout<<"Debug "<<str<<endl;
  }

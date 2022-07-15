@@ -150,9 +150,9 @@ StartTournamentWindow::StartTournamentWindow( const int default_width,
 
       add_clist( tour_clist, hbox );
 
-      char* button_labels[] = { _(" Remove "), _(" Select All "),
-                                _(" Unselect All "), _(" Add "),
-                                _(" Select All "), _(" Unselect All ") };
+      const char* button_labels[] = { _(" Remove "), _(" Select All "),
+				      _(" Unselect All "), _(" Add "),
+				      _(" Select All "), _(" Unselect All ") };
 
       GtkWidget* vbox2 = NULL;
 
@@ -635,10 +635,10 @@ new_tournament( const list<start_tournament_info_t*>& robotfilename_list,
         {
           start_tournament_info_t* info = *li;
 
-          char* lst[] = { "" };
+          const char* lst[] = { "" };
 
-          int row = gtk_clist_append( GTK_CLIST( tour_clist ), lst );
-          gtk_clist_set_foreground( GTK_CLIST( tour_clist ), row, 
+          int row = gtk_clist_append( GTK_CLIST( tour_clist ), (gchar **)lst );
+          gtk_clist_set_foreground( GTK_CLIST( tour_clist ), row,
                                     the_gui.get_fg_gdk_colour_p());
           gtk_clist_set_background( GTK_CLIST( tour_clist ), row, 
                                     the_gui.get_bg_gdk_colour_p());
@@ -995,9 +995,9 @@ StartTournamentWindow::add_all_selected( const bool robots )
       start_tournament_info_t* info_dir_p = *li;
       if( info_dir_p->selected )
         {
-          char * list[] = { "" };
-          
-          int row = gtk_clist_append( GTK_CLIST( clist_tourn ), list );
+          const char * list[] = { "" };
+
+          int row = gtk_clist_append( GTK_CLIST( clist_tourn ), (gchar **)list );
           gtk_clist_set_foreground( GTK_CLIST( clist_tourn ), row,
                                     the_gui.get_fg_gdk_colour_p() );
           gtk_clist_set_background( GTK_CLIST( clist_tourn ), row,

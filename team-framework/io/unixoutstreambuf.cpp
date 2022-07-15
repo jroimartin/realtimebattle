@@ -1,6 +1,6 @@
 /************************************************************************
     $Id: unixoutstreambuf.cpp,v 1.3 2005/01/06 17:59:28 jonico Exp $
-    
+
     RTB - Team Framework: Framework for RealTime Battle robots to communicate efficiently in a team
     Copyright (C) 2004 The RTB- Team Framework Group: http://rtb-team.sourceforge.net
 
@@ -30,20 +30,23 @@
 #include "unixoutstreambuf.h"
 #include <sstream>
 #include <errno.h>
+#include <cstring>
+#include <cstdio>
+#include <unistd.h>
 /**
  * Namespace
  */
 namespace IO {
-	
+
 	using std::ostringstream;
-	
-	/** 
+
+	/**
 	 * Constructor
 	 */
 	UnixOutStreambuf::UnixOutStreambuf(int fd) throw()
 	: _fd(fd) {
 	}
-	/** 
+	/**
 	 * Methods
 	 */
 	/**
@@ -52,10 +55,10 @@ namespace IO {
 	int UnixOutStreambuf::overflow (int character) throw (IOException, bad_exception) {
 		if( character != EOF ) {
 			char data = character;
-			
+
 			//writing successful?
 			if( write(_fd, &data, 1) != 1 ) {
-			
+
 				//throw exception
 				ostringstream int2string;
 				int2string << _fd;
@@ -65,16 +68,16 @@ namespace IO {
 		return character;
 	}
 	/**
-	 * 
+	 *
 	 */
 	streamsize UnixOutStreambuf::xsputn (const char* databuffer, streamsize size) throw(IOException, bad_exception) {
 		int num = write(_fd, databuffer, size);
-		
+
 		//writing successful?
 		if( num >= 0 )
 			return num;
 		else {
-			
+
 			//throw exception
 			ostringstream int2string;
 			int2string << _fd;

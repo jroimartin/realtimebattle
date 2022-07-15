@@ -41,6 +41,8 @@
 //IPC
 #include <fcntl.h>
 
+#include <unistd.h>
+
 /**
  * Namespace
  */

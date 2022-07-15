@@ -32,7 +32,7 @@ cat <<__EOF| sed -ne "s/@STRATEGY@/$strategy/g; s/@ROBOTNAME@/$name/g; s/@TEAM@/
 #! /bin/sh
 #mkdir -p /tmp/@TEAM@/
 #rm -f "/tmp/@TEAM@/@STRATEGY@-@ROBOTNAME@-@TEAM@.log"
-exec "@RTBHOME@/rtb-team" "@RTBHOME@/@STRATEGY@-@ROBOTNAME@-@TEAM@.conf"
+exec "@RTBHOME@/rtb-team" "/usr/share/doc/realtimebattle/examples/rtb-team-framework/@STRATEGY@-@ROBOTNAME@-@TEAM@.conf"
 #"@RTBHOME@/rtb-team" "@RTBHOME@/@STRATEGY@-@ROBOTNAME@-@TEAM@.conf"
 __EOF
 else

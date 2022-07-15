@@ -20,6 +20,7 @@
 
 #include <math.h>
 #include "Messagetypes.h"
+#include <cstring>
 
 using namespace std;
 

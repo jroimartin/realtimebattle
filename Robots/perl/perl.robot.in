@@ -119,8 +119,8 @@ my $QUIT = 0;
 my %OPTION;
 my %RDATA = (Energy => 100, RobotsLeft => 0);
 
-open(LOG,">>/tmp/perl.robot.log") || die "Kann Logfile nicht öffnen: $!";
-LOG->autoflush(1);
+#open(LOG,">>/tmp/perl.robot.log") || die "Kann Logfile nicht öffnen: $!";
+#LOG->autoflush(1);
 STDOUT->autoflush(1);
 STDERR->autoflush(1);
 
@@ -131,13 +131,13 @@ $SIG{USR1} = \&check_message;
 $SIG{USR2} = 'IGNORE';
 $SIG{HUP}  = \&quit_bot;
 
-print LOG "Starting Roboter\n";
+#print LOG "Starting Roboter\n";
 
 while(not $QUIT) {
   &run_robot
 }
 
-print LOG "Jetzt ist aber Ende\a\n";
+#print LOG "Jetzt ist aber Ende\a\n";
 exit;
 ###################################################################
 
@@ -179,7 +179,8 @@ sub parse($) {
   elsif ($cmd eq "Dead")       {Dead()}
   elsif ($cmd eq "GameFinishes") {GameFinishes()}
   elsif ($cmd eq "ExitRobot")  {ExitRobot()}
-  else {print LOG "Unknown Command $input\n";
+  else {
+#        print LOG "Unknown Command $input\n";
 #        print "Print Unknown Command $input\n"
        }
 }
@@ -190,7 +191,7 @@ sub parse($) {
 sub Initialize($) {
   my $arg = shift;
   if ($arg ==1) {
-    print LOG "Initialising\n";
+#    print LOG "Initialising\n";
     Name($NAME);
     Colour($COLOR);
     Print("Ahh, awaken again...");
@@ -228,7 +229,7 @@ sub Radar($$$) {
 #  print LOG "Radar: $dist, $obj, $angle\n";
   if ($obj == 0) {tac_fire($angle)}
   if ($obj == 2 or $obj == 4) {tac_wall($dist)}
-  print LOG "Gotch: $obj\n" if ($obj == 5);
+#  print LOG "Gotch: $obj\n" if ($obj == 5);
 }
 
 sub Info($$$) {
@@ -256,7 +257,7 @@ sub RobotsLeft($) {
   if ($RDATA{RobotsLeft}) {
     if ($robots < $RDATA{RobotsLeft}) {
       Print("Gotcha. Onother one's gone! :-)");
-    }  
+    }
   }
   $RDATA{RobotsLeft} = $robots;
 }
@@ -265,13 +266,13 @@ sub Collision($$) {
   my $obj  = shift;
   my $angle= shift;
   if    ($obj == 4) {Print("Boom! Hit by a mine")}
-  elsif ($obj == 3) {Print("Yamm! Cookies Cookiiiies!")}  
+  elsif ($obj == 3) {Print("Yamm! Cookies Cookiiiies!")}
 }
 
 sub Warning($$) {
   my $type = shift;
   my $msg = join(" ",@_);
-  print LOG "WARN: ($type) $msg\n";
+#  print LOG "WARN: ($type) $msg\n";
   Print("Someone's fucking me: ($type) $msg");
 }
 
@@ -293,13 +294,13 @@ sub ExitRobot() {
 # Tools
 sub dump_options() {
   $OPTION{'ROBOT_MAX_ROTATE'}=12;
-  print LOG "RobotMaxRotate(): ", $OPTION{ROBOT_MAX_ROTATE()},"\n";
-  print LOG "RobotMaxRotate: ", $OPTION{ROBOT_MAX_ROTATE},"\n";
-  print LOG "RobotCannonMaxRotate: ", $OPTION{ROBOT_CANNON_MAX_ROTATE()},"\n";
-  print LOG "RobotMaxAcceleration: ", $OPTION{ROBOT_MAX_ACCELERATION()},"\n";
-  print LOG "RobotMinAcceleration: ", $OPTION{ROBOT_MIN_ACCELERATION()},"\n";
-  print LOG "RobotStartEnergy: ", $OPTION{ROBOT_START_ENERGY()},"\n";
-  
+#   print LOG "RobotMaxRotate(): ", $OPTION{ROBOT_MAX_ROTATE()},"\n";
+#   print LOG "RobotMaxRotate: ", $OPTION{ROBOT_MAX_ROTATE},"\n";
+#   print LOG "RobotCannonMaxRotate: ", $OPTION{ROBOT_CANNON_MAX_ROTATE()},"\n";
+#   print LOG "RobotMaxAcceleration: ", $OPTION{ROBOT_MAX_ACCELERATION()},"\n";
+#   print LOG "RobotMinAcceleration: ", $OPTION{ROBOT_MIN_ACCELERATION()},"\n";
+#   print LOG "RobotStartEnergy: ", $OPTION{ROBOT_START_ENERGY()},"\n";
+
 }
 
 ##########################################################################

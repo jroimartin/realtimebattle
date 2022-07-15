@@ -111,7 +111,7 @@ StatisticsWindow::StatisticsWindow( const int default_width,
   gtk_widget_show( hbox );
 
   {
-    char* first_xpm[13] =
+    const char* first_xpm[13] =
     { "13 10 2 1",
       "       c None",
       "x      c #000000000000",
@@ -125,7 +125,7 @@ StatisticsWindow::StatisticsWindow( const int default_width,
       "xx     xxxxxx",
       "xx       xxxx",
       "xx         xx" };
-    char* prev_xpm[13] =
+    const char* prev_xpm[13] =
     { "9 10 2 1",
       "       c None",
       "x      c #000000000000",
@@ -139,7 +139,7 @@ StatisticsWindow::StatisticsWindow( const int default_width,
       "   xxxxxx",
       "     xxxx",
       "       xx" };
-    char* next_xpm[13] =
+    const char* next_xpm[13] =
     { "9 10 2 1",
       "       c None",
       "x      c #000000000000",
@@ -153,7 +153,7 @@ StatisticsWindow::StatisticsWindow( const int default_width,
       "xxxxxx   ",
       "xxxx     ",
       "xx       " };
-    char* last_xpm[13] =
+    const char* last_xpm[13] =
     { "13 10 2 1",
       "       c None",
       "x      c #000000000000",
@@ -169,7 +169,7 @@ StatisticsWindow::StatisticsWindow( const int default_width,
       "xx         xx" };
 
     struct button_t
-    { char** xpm; GtkSignalFunc func; gpointer data; int pack; };
+    { const char** xpm; GtkSignalFunc func; gpointer data; int pack; };
 
     struct button_t buttons[] = {
       { first_xpm, (GtkSignalFunc) StatisticsWindow::change_stats_viewed,
@@ -194,7 +194,7 @@ StatisticsWindow::StatisticsWindow( const int default_width,
             pixmap = gdk_pixmap_create_from_xpm_d( window_p->window,
                                                    &bitmap_mask,
                                                    &(window_p->style->black),
-                                                   buttons[i].xpm );
+                                                   (gchar **)buttons[i].xpm );
             GtkWidget* pixmap_widget = gtk_pixmap_new( pixmap, bitmap_mask );
             gtk_widget_show( pixmap_widget );
             gtk_container_add( GTK_CONTAINER( button_w ), pixmap_widget );
@@ -222,9 +222,9 @@ StatisticsWindow::StatisticsWindow( const int default_width,
   gtk_box_pack_start( GTK_BOX( vbox ), scrolled_win, TRUE, TRUE, 0);
   gtk_widget_show( scrolled_win );
 
-  char * titles[7] = { "",_("Name"), _("Position"), _("Points"),
-                       _("Games"), _("Survival Time"), _("Total Points") };
-  clist = gtk_clist_new_with_titles(7, titles );
+  const char * titles[7] = { "",_("Name"), _("Position"), _("Points"),
+			     _("Games"), _("Survival Time"), _("Total Points") };
+  clist = gtk_clist_new_with_titles(7, (gchar **)titles );
   gtk_clist_set_selection_mode( GTK_CLIST( clist ), GTK_SELECTION_BROWSE );
   gtk_clist_set_column_width( GTK_CLIST( clist ), 0, 5 );
   gtk_clist_set_column_width( GTK_CLIST( clist ), 1, 120 );
@@ -543,8 +543,8 @@ void
 StatisticsWindow::add_new_row( Robot* robot_p, stat_t average_stat,
                                int games_played )
 {
-  char* empty_list[] = { "", "", "", "", "", "", "", "" };
-  int row = gtk_clist_append( GTK_CLIST( clist ), empty_list );
+  const char* empty_list[] = { "", "", "", "", "", "", "", "" };
+  int row = gtk_clist_append( GTK_CLIST( clist ), (gchar **)empty_list );
   gtk_clist_set_foreground( GTK_CLIST( clist ), row,
                             the_gui.get_fg_gdk_colour_p() );
   gtk_clist_set_background( GTK_CLIST( clist ), row,

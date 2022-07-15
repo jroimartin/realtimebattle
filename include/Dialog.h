@@ -27,6 +27,7 @@ Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #ifndef NO_GRAPHICS
 
 #include <list>
+#include <string>
 using namespace std;
 
 struct _GtkWidget;
@@ -52,7 +53,7 @@ public:
   Dialog                            ( const string& info,
                                       const list<string>& button_labels,
                                       const DialogFunction func,
-                                      const gchar* window_title = "RealTimeBattle" );
+                                      const gchar* window_title = (gchar *)"RealTimeBattle" );
   ~Dialog                           () {}
 
   static void generate_result       ( GtkWidget* widget, result_t* result_p );

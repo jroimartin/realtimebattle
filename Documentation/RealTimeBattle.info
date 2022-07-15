@@ -3,6 +3,11 @@ Dies ist RealTimeBattle.info, hergestellt von Makeinfo Version 4.7 aus
 
    \input texinfo
 
+INFO-DIR-SECTION Games
+START-INFO-DIR-ENTRY
+* RealTimeBattle: (RealTimeBattle).	A robot programming game
+END-INFO-DIR-ENTRY
+
 
 File: RealTimeBattle.info,  Node: Top,  Next: Introduction,  Up: (dir)
 

@@ -62,6 +62,17 @@ ControlWindow::ControlWindow( const int default_width,
   gtk_signal_connect( GTK_OBJECT( window_p ), "delete_event",
                       (GtkSignalFunc) ControlWindow::delete_event_occured,
                       (gpointer) this );
+  
+  // The window use an icon
+  
+  {
+    GdkPixbuf *icon = gdk_pixbuf_new_from_file ("/usr/share/pixmaps/realtimebattle.xpm", NULL);
+    if (icon != NULL)
+      {
+	gtk_window_set_default_icon(icon);
+	gdk_pixbuf_unref(icon);
+      }
+  }
 
   // Main boxes
 
@@ -285,7 +296,7 @@ ControlWindow::display_replay_widgets()
   gtk_box_pack_start( GTK_BOX( hbox ), time_control, TRUE, TRUE, 0 );
   gtk_widget_show( time_control );
 
-  char* rew_xpm[13] =
+  const char* rew_xpm[13] =
   { "18 10 2 1",
     "       c None",
     "x      c #000000000000",
@@ -299,7 +310,7 @@ ControlWindow::display_replay_widgets()
     "   xxxxxx   xxxxxx",
     "     xxxx     xxxx",
     "       xx       xx" };
-  char* ffw_xpm[13] =
+  const char* ffw_xpm[13] =
   { "18 10 2 1",
     "       c None",
     "x      c #000000000000",
@@ -316,7 +327,7 @@ ControlWindow::display_replay_widgets()
 
   struct button_t
   {
-    char** xpm;
+    const char** xpm;
     string label;
     GtkSignalFunc clicked_func;
     GtkSignalFunc pressed_func;
@@ -378,7 +389,7 @@ ControlWindow::display_replay_widgets()
           pixmap = gdk_pixmap_create_from_xpm_d( window_p->window,
                                                  &bitmap_mask,
                                                  &(window_p->style->black),
-                                                 replay_buttons[i].xpm );
+                                                 (gchar**)replay_buttons[i].xpm );
           GtkWidget* pixmap_widget = gtk_pixmap_new( pixmap, bitmap_mask );
           gtk_widget_show( pixmap_widget );
           gtk_container_add( GTK_CONTAINER( button_w ), pixmap_widget );

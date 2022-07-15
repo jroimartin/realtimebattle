@@ -18,7 +18,7 @@
 /* #include<Messagetypes.h> */
 
 double GAME_OPT[13];
-double rotate_angle = M_PIl/36; /* 5 deg */
+double rotate_angle = M_PI/36; /* 5 deg */
 int joy_fd = -1;
 
 
@@ -28,7 +28,7 @@ void initialize(int num)
   {
     puts("Name Joybot");
     puts("Colour B2DD32 32DDBs");
-    
+
     fflush(stdout);
   }
 }
@@ -51,7 +51,7 @@ void right(void)
 void left(void)
 {
   printf("RotateAmount 1 %f %f\n",GAME_OPT[ROBOT_MAX_ROTATE],rotate_angle);
-  
+
 }
 
 void shoot(void)
@@ -151,7 +151,7 @@ void main_loop(void)
                   break;
               default:
                   break; /* do nothing */
-                      
+
             }
             break;
         case JS_EVENT_AXIS:
@@ -243,5 +243,5 @@ int main(void)
   printf("RobotOption %i 1\n",USE_NON_BLOCKING);
   fflush(stdout);
   main_loop();
-  
+
 }

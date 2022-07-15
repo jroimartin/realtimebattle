@@ -69,9 +69,9 @@ ScoreWindow::ScoreWindow( const int default_width,
   gtk_container_add( GTK_CONTAINER( window_p ), scrolled_win );
   gtk_widget_show ( scrolled_win );
 
-  char * titles[6] = { "", _("Name"), _("Energy"), _("Place"),
-                       _("Last"), _("Score") };
-  clist = gtk_clist_new_with_titles( 6, titles );
+  const char * titles[6] = { "", _("Name"), _("Energy"), _("Place"),
+			     _("Last"), _("Score") };
+  clist = gtk_clist_new_with_titles( 6, (gchar**) titles );
   gtk_clist_set_selection_mode( GTK_CLIST( clist ), GTK_SELECTION_BROWSE );
   gtk_clist_set_column_width( GTK_CLIST( clist ), 0, 5 );
   gtk_clist_set_column_width( GTK_CLIST( clist ), 1, 120 );
@@ -261,8 +261,8 @@ ScoreWindow::add_robots()
     {
       robot_p = (Robot*)(*li);
 
-      char* empty_list[] = { "", "", "", "", "", "" };
-      int row = gtk_clist_append( GTK_CLIST( clist ), empty_list );
+      const char* empty_list[] = { "", "", "", "", "", "" };
+      int row = gtk_clist_append( GTK_CLIST( clist ), (gchar **)empty_list );
 
       gtk_clist_set_foreground( GTK_CLIST( clist ), row,
                                 the_gui.get_fg_gdk_colour_p() );
