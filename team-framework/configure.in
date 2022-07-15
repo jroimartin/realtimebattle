@@ -59,6 +59,8 @@ AC_SUBST(ARENADIR)
 AC_DEFINE_UNQUOTED(ROBOTDIR, "$ROBOTDIR",[robothome])
 AC_DEFINE_UNQUOTED(ARENADIR, "$ARENADIR",[arenahome])
 
+CXXFLAGS="$CXXFLAGS -std=c++14 -Wno-narrowing"
+
 dnl Do the output now
 AC_OUTPUT([
 Makefile
